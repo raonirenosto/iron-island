@@ -12,7 +12,9 @@ class IronMarket < Place
   end
 
   def greetings
-    puts "Uma camponesa que está no balcão diz: Olá senhor, em que posso ajudá-lo?".yellow
+    puts "Uma camponesa que está no balcão diz:\n".yellow, 
+      "Olá senhor,".yellow,
+         "em que posso ajudá-lo?".yellow
   end
 
   def show_menu
@@ -31,7 +33,9 @@ class IronMarket < Place
     puts ""
     puts "(1) - Mercado de Ferro"
     puts "(2) - Cavaleiros de Ferro"
-    puts "(3) - Voltar"
+    puts "(3) - Comprar no Mercado de Ferro"
+    puts "(4) - Vender no Mercado de Ferro"
+    puts "(5) - Voltar"
 
     get_talk_option
   end
@@ -81,7 +85,11 @@ class IronMarket < Place
       talk_about_iron_market
     when "2","cavaleiros de ferro"
       talk_about_iron_knights
-    when "3","voltar"
+    when "3","comprar no mercado de ferro"
+      talk_about_buy_on_iron_market
+    when "4","vender no mercado de ferro"
+      talk_about_sell_on_iron_market
+    when "5","voltar"
       go
     else
       puts ""
@@ -149,5 +157,35 @@ class IronMarket < Place
     puts "Aperte qualquer botão para continuar...".green
     gets.chomp
     show_talk_menu
+  end
+
+  def talk_about_buy_on_iron_market
+    clear
+    puts "A camponesa diz:".yellow
+    puts ""
+    puts "O Mercado de Ferro vende capacetes," 
+    puts "armaduras, luvas e botas para cavaleiros."
+    puts "Quando pensar em equipamentos feitos para campeões,"
+    puts "pense Mercado de Ferro."  
+    puts ""
+    puts "Aperte qualquer botão para continuar...".green
+    gets.chomp
+    show_talk_menu
+  end
+
+  def talk_about_sell_on_iron_market
+    clear
+    puts "A camponesa diz:".yellow
+    puts ""
+    puts "No Mercado de ferro é possível vender vários itens encontrados na"
+    puts "Ilha de Ferro, inclusive Árvores de Ferro."
+    puts "Você será muito bem pago com moedas de ferro." 
+    puts "Com moedas de ferro é possível comprar diversos produtos no vilarejo."
+    puts "Ah, não se esqueça que você pode vender seus equipamentos no Mercado"
+    puts "de Ferro também."
+    puts ""
+    puts "Aperte qualquer botão para continuar...".green
+    gets.chomp
+    show_talk_menu 
   end
 end
