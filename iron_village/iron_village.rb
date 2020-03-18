@@ -4,6 +4,7 @@ require_relative "../place"
 require_relative "blacksmith"
 require_relative "sorceress"
 require_relative "iron_market"
+require_relative "iron_house"
 
 class IronVillage < Place
   include Singleton
@@ -33,6 +34,7 @@ class IronVillage < Place
     puts "(1) - Ferreiro"
     puts "(2) - Feiticeira"
     puts "(3) - Mercado de Ferro"
+    puts "(4) - Casa de Ferro"
   end
 
   def get_user_option
@@ -47,6 +49,8 @@ class IronVillage < Place
       Sorceress.instance.go
     when "3","mercado de ferro"
       IronMarket.instance.go
+    when "4","casa de ferro"
+      IronHouse.instance.go
     else
       puts ""
       puts @@MESSAGE.green
