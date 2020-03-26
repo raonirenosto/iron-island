@@ -1,4 +1,5 @@
-class Place
+require_relative "game"
+class Place < Game
 
   @@MESSAGE = "Comando inválido, digite novamente uma opção válida:"
 

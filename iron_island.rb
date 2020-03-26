@@ -1,7 +1,7 @@
 require "singleton"
 require_relative "place"
 require_relative "iron_village/iron_village.rb"
-require_relative "menu"
+# require_relative "menu"
 
 class IronIsland < Place
   include Singleton
