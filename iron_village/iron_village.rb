@@ -7,6 +7,7 @@ require_relative "iron_market"
 require_relative "iron_house"
 require_relative "iron_church"
 require_relative "iron_knight_order"
+require_relative "iron_horse_stable"
 
 class IronVillage < Place
   include Singleton
@@ -39,6 +40,7 @@ class IronVillage < Place
     puts "(4) - Casa de Ferro"
     puts "(5) - Igreja de Ferro"
     puts "(6) - Ordem dos Cavaleiros de Ferro"
+    puts "(7) - Estábulo Cavalo de Ferro"
   end
 
   def get_user_option
@@ -59,6 +61,8 @@ class IronVillage < Place
       IronChurch.instance.go
     when "6","ordem dos cavaleiros de ferro"
       IronKnightOrder.instance.go
+    when "7","estábulo cavalo de ferro"
+      IronHorseStable.instance.go
     else
       puts ""
       puts @@MESSAGE.green
