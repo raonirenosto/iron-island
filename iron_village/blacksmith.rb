@@ -5,10 +5,44 @@ require_relative "iron_village"
 class Blacksmith < Place
   include Singleton
 
+  @@talk_menu =
+  [
+    {
+      label: "O Ferreiro",
+      text: "O Reino de Ferro possui vários ferreiros habilidosos, mas modéstia a parte, entre eles eu sou o melhor. A minha arte de forjar espadas é conhecida nos quatro cantos da ilha."
+    },
+    {
+      label: "A Feiticeira",
+      text: "Se você precisar de poções mágicas vá até a Feiticeira, mas tome cuidado! Muitas magias praticadas por ela não me agradam. Nunca confiei nessa bruxa."
+    }
+  ]
+
+  @@action_menu =
+  [
+    {
+      label: "Machado",
+      method: :buy,
+      parameter: "axe"
+    },
+    {
+      label: "Espada",
+      method: :buy,
+      parameter: "sword"
+    },
+    {
+      label: "Porrete de Ferro",
+      method: :buy,
+      parameter: "iron club"
+    }
+  ]
+
   def go
     clear
     greetings
-    show_menu
+    show_meinu
+    # set_talk_menu @@talk_menu
+    # set_action_menu @@action_menu
+    # show_menu2
   end
 
   def greetings
@@ -26,12 +60,19 @@ class Blacksmith < Place
 
   def show_talk_menu
     clear
-    puts "O Ferreiro diz: Sobre o que estaria interessado?".yellow
-    puts ""
-    puts "(1) - O Ferreiro"
-    puts "(2) - A Feiticeira"
-    puts "(3) - Voltar"
-
+    @@menu.each do |option|
+        add_talk_menu option[:label], option[:text]
+    end
+    show_talk_menu_2
+    # add_talk_menu @@menu[:option1][:label], @@menu[:option1][:text]
+    # add_talk_menu @@menu[:option2][:label], @@menu[:option2][:text]
+    # show_talk_menu_2
+    # puts "O Ferreiro diz: Sobre o que estaria interessado?".yellow
+    # puts ""
+    # puts "(1) - O Ferreiro"
+    # puts "(2) - A Feiticeira"
+    # puts "(3) - Voltar"
+    #
     get_talk_option
   end
 
@@ -108,9 +149,9 @@ class Blacksmith < Place
     end
   end
 
-  def buy
+  def buy item
     puts ""
-    puts "Should buy something...".green
+    puts "Should buy something a: #{item}".green
     gets
     show_buy_menu
   end

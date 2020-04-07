@@ -1,0 +1,14 @@
+talk:
+  options:
+    - blacksmith_blacksmith
+    - blacksmith_sorceress
+action:
+    options:
+      -
+        label: :axe
+        action: :buy
+        item: :axe
+      -
+        label: :sword
+        action: :buy
+        item: :sword

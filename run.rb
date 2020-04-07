@@ -1,10 +1,15 @@
 require_relative "iron_island"
+require 'yaml'
 
 class Run
 
   def start
     iron_island = IronIsland.instance
     iron_island.go
+    #
+    # thing = YAML.load_file('/menu/blacksmith.yaml')
+    #
+    # puts thing
   end
 
   # def go place
