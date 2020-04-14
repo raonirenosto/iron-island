@@ -1,8 +1,10 @@
+welcome: blacksmith_welcome
 talk:
   options:
-    - blacksmith_blacksmith
-    - blacksmith_sorceress
+    - blacksmith
+    - sorceress
 action:
+    label: buy
     options:
       -
         label: :axe

@@ -1,12 +1,18 @@
 require_relative "iron_island"
+require_relative "menu/menu.rb"
 require 'yaml'
 
 class Run
+  include Menu
 
   def start
-    iron_island = IronIsland.instance
-    iron_island.go
-    #
+    clear
+    show_menu "blacksmith"
+    # iron_island = IronIsland.instance
+    # iron_island.go
+
+
+
     # thing = YAML.load_file('/menu/blacksmith.yaml')
     #
     # puts thing

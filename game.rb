@@ -1,4 +1,4 @@
-require_relative "utils/menu.rb"
+require_relative "menu/menu.rb"
 
 class Game
   include Menu

@@ -1,0 +1,7 @@
+talk: Conversar
+buy: Comprar
+axe: Machado
+blacksmith: Ferreiro
+sorceress: Feiticeira
+blacksmith_welcome: "O Ferreiro diz: Olá aldeão, em que posso ajudá-lo?"
+invalid_command: "Comando inválido"

@@ -12,9 +12,10 @@ class IronIsland < Place
 
   def go
     clear
-    greetings
-    show_menu
-    get_user_option
+    show_meinu
+    # greetings
+    # show_menu
+    # get_user_option
   end
 
   def greetings
