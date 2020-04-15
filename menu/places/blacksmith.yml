@@ -4,13 +4,19 @@ talk:
     - blacksmith
     - sorceress
 action:
-    label: buy
-    options:
-      -
-        label: :axe
-        action: :buy
-        item: :axe
-      -
-        label: :sword
-        action: :buy
-        item: :sword
+  label: buy
+  options:
+    -
+      label: axe
+      action: :buy_axe
+      item: :axe
+    -
+      label: sword
+      action: :buy_sword
+      item: :sword
+    -
+      label: go_back
+      action: :go_back
+
+go_back:
+  label: have_a_nice_day

@@ -1,7 +1,10 @@
 talk: Conversar
 buy: Comprar
 axe: Machado
+sword: Espada
 blacksmith: Ferreiro
 sorceress: Feiticeira
 blacksmith_welcome: "O Ferreiro diz: Olá aldeão, em que posso ajudá-lo?"
 invalid_command: "Comando inválido"
+have_a_nice_day: "Até logo"
+go_back: "Voltar"
