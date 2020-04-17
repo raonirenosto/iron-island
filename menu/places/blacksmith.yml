@@ -5,6 +5,7 @@ talk:
     - sorceress
 action:
   label: buy
+  text: what_to_buy
   options:
     -
       label: axe

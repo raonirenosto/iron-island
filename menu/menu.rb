@@ -10,6 +10,7 @@ class Menu
   @@MESSAGE = "Comando inválido, digite novamente uma opção válida:"
 
   def show_menu
+    clear
 
     self.menu = get_menu place
     self.labels = get_labels
@@ -108,18 +109,26 @@ class Menu
   end
 
   def show_action_menu
+    clear
     index = 0
     hash = {}
 
-    pp self.menu
+    puts labels[menu["action"]["text"]].yellow
+    puts ""
     menu["action"]["options"].each do |option|
       index += 1
       label = option["label"]
-      pp label
       puts "( #{index} ) - #{labels[label]}"
-      hash[index.to_s] = lambda { orgin.send option["action"] }
+      if option["action"] == :go_back
+        hash[index.to_s] = self.method(:show_menu)
+        label = labels[label].downcase
+        hash[label] = self.method(:show_menu)
+        break
+      end
+
+      hash[index.to_s] = origin.method(option["action"])
       label = labels[label].downcase
-      hash[label] = lambda { orgin.send option["action"] }
+      hash[label] = origin.method(option["action"])
     end
 
     command = gets.chomp.downcase
@@ -133,7 +142,8 @@ class Menu
       return
     end
 
-    send hash[command]
+    hash[command].call
+
   end
 
   def show_talk_menu

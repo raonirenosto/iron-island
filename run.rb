@@ -21,6 +21,14 @@ class Run
     puts "Go back"
   end
 
+  def buy_sword
+    pp "Comprar machado"
+  end
+
+  def buy_axe
+    pp "Comprar machado"
+  end
+
   # def go place
   #   # clean console
   #   puts "\e[H\e[2J"
