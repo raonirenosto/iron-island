@@ -1,102 +1,81 @@
+require_relative 'game.rb'
 require "singleton"
-require_relative "place"
-require_relative "iron_village/iron_village.rb"
-# require_relative "menu"
 
-class IronIsland < Place
+class IronIsland
   include Singleton
-
-  def name
-    "Ilha de Ferro"
-  end
+  include Game
 
   def go
+    land
+  end
+
+  def land
     clear
-    show_meinu
-    # greetings
-    # show_menu
-    # get_user_option
-  end
-
-  def greetings
-    puts "Na placa do cais da Ilha de Ferro está escrito:"
-    puts ""
-    puts "Bem-vindo a Ilha de Ferro,".yellow
+    puts  text("iron_island_welcome").white
     puts
-    puts "o reino forjado por bravos cavaleiros,"
-    puts "aproveite a sua viagem, mas cuidado com os lugares que visita"
-    puts "o Reino de Ferro pode apresentar várias surpresas."
+    print_long_text text("iron_island_information").yellow
+    puts
+    wait_until_type
+    tutorial
   end
 
-  def show_menu
-    puts ""
-    puts "Para onde gostaria de ir?".green
-    puts ""
-    puts "(1) - Vilarejo de Ferro"
-    puts "(2) - Castelo de Ferro"
-    puts "(3) - Floresta de Ferro"
+  def tutorial
+    puts text("iron_island_gammel_says").white
+    print_long_text text("iron_island_gammel_txt_1").yellow
+    puts
+    puts text("iron_island_gammel_says").white
+    print_long_text text("iron_island_gammel_txt_2").yellow
+    puts
+    puts text("iron_island_gammel_says").white
+    puts text("iron_island_gammel_tips").yellow
+    print_long_text text("iron_island_start_tutorial_question").green
+    puts
+
+    yes_no_question(method(:show_tutorial), method(:skip_tutorial)) {
+        puts text("iron_island_gammel_says").white
+        puts text("iron_island_gammel_unknown_answer").yellow
+        print_long_text text("iron_island_start_tutorial_question").green
+        puts
+    }
   end
 
-  def get_user_option
-    command = gets.chomp.downcase
-
-    check command
-
-    case command
-    when "1", "vilarejo de ferro"
-      IronVillage.instance.go
-    else
-      puts ""
-      puts @@MESSAGE.green
-      self.get_buy_option
-    end
+  def skip_tutorial
+    puts
+    puts text("iron_island_gammel_says").white
+    print_long_text text("iron_island_gammel_no_tutorial").yellow
+    wait_until_type
+    show_places
   end
 
-  # def start
-  #   iron_village = IronVillage.new
-  #   go iron_village
+  def show_tutorial
+    puts "=== skip tutorial"
+  end
+
+  def show_places
+    clear
+    exploring_text = change_symbol_color text("iron_island_start_exploring"), :white, :blue
+    print_long_text exploring_text
+    tips "tips_places"
+    puts
+    command = gets.chomp
+  end
+
+  # def greetings
+  #   puts "Na placa do cais da Ilha de Ferro está escrito:"
+  #   puts ""
+  #   puts "Bem-vindo a Ilha de Ferro,".yellow
+  #   puts
+  #   puts "o reino forjado por bravos cavaleiros,"
+  #   puts "aproveite a sua viagem, mas cuidado com os lugares que visita"
+  #   puts "o Reino de Ferro pode apresentar várias surpresas."
   # end
   #
-  # def go place
-  #
-  #   # Show specific place welcome message
-  #   place.welcome
-  #
-  #   place.menu.show
-  #
-  #   user_interaction place.menu
-  # end
-  #
-  # def user_interaction menu
-  #   # Get user option
-  #   user_command = gets.chomp
-  #
-  #   # Go to previous menu
-  #   if (!menu.root? &&
-  #       (user_command == "voltar" ||
-  #       user_command == "v" ))
-  #     go menu.father.place
-  #     return
-  #   end
-  #
-  #   menu_item = menu.get_option user_command
-  #
-  #   if menu_item == nil
-  #     puts "não, essa opção não existe"
-  #     menu.show
-  #     user_interaction menu
-  #   else
-  #     if menu_item.place?
-  #       go menu_item.place
-  #     end
-  #     if menu_item.interactive?
-  #       menu_item.father.place.show_menu_question
-  #       menu_item.show
-  #       user_interaction menu_item
-  #     end
-  #     if menu_item.talk?
-  #       menu_item.place.talk menu_item
-  #     end
-  #   end
+  # def show_menu
+  #   puts ""
+  #   puts "Para onde gostaria de ir?".green
+  #   puts ""
+  #   puts "(1) - Vilarejo de Ferro"
+  #   puts "(2) - Castelo de Ferro"
+  #   puts "(3) - Floresta de Ferro"
   # end
 end

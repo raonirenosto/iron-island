@@ -1,0 +1,37 @@
+#tips
+tips_places: Digite *lugares* para mostrar lugares aonde você pode ir
+tips_label: Dica
+
+#iron island
+iron_island_welcome: Você acaba de desembarcar na Ilha de Ferro!
+iron_island_information: A Ilha de Ferro é um lugar incrível, onde os
+  forasteiros podem viver em tranquilidade e armonia. Mas claro, o Reino
+  de Ferro pode apresentar algumas surpresas pelo caminho.
+iron_island_gammel_says: "Gammel diz:"
+iron_island_gammel_txt_1: Olá, meu nome é Gammel, eu sou o responsável por
+  transportar forasteiros para dentro e para fora da Ilha de Ferro.
+iron_island_gammel_txt_2: As coisas aqui são um pouco diferentes do que vocês
+  forasteiros estão acostumados em outros lugares.
+iron_island_gammel_tips: Você gostaria que eu te desse algumas dicas?
+iron_island_gammel_unknown_answer: Não entendi forasteiro. Me diga sim ou não?
+iron_island_start_tutorial_question: Digite "sim" para começar o tutorial ou
+  "não" para pular o tutorial
+iron_island_gammel_no_tutorial: Ok forasteiro. A partir de agora você está por
+  sua conta. Boa sorte, você vai precisar!
+iron_island_gammel_yes_tutorial: Ok forasteiro, vamos para as dicas
+iron_island_start_exploring: Você está livre para explorar a Ilha de Ferro do
+  jeito que preferir. Digite *comandos* a qualquer momento para saber
+  quais comandos estão disponíveis no jogo.
+
+
+talk: Conversar
+buy: Comprar
+axe: Machado
+sword: Espada
+blacksmith: Ferreiro
+sorceress: Feiticeira
+blacksmith_welcome: "O Ferreiro diz: Olá aldeão, em que posso ajudá-lo?"
+invalid_command: "Comando inválido"
+have_a_nice_day: "Até logo"
+go_back: "Voltar"
+what_to_buy: "O que você gostaria de comprar?"
