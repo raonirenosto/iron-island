@@ -11,28 +11,29 @@ class IronIsland
 
   def land
     clear
-    puts  text("iron_island_welcome").white
+    puts  text("iron_island_welcome")
     puts
     print_long_text text("iron_island_information").yellow
     puts
     wait_until_type
-    tutorial
+    introduce_gammel
   end
 
-  def tutorial
-    puts text("iron_island_gammel_says").white
+  def introduce_gammel
+    clear
+    puts text("iron_island_gammel_says")
     print_long_text text("iron_island_gammel_txt_1").yellow
     puts
-    puts text("iron_island_gammel_says").white
+    puts text("iron_island_gammel_says")
     print_long_text text("iron_island_gammel_txt_2").yellow
     puts
-    puts text("iron_island_gammel_says").white
+    puts text("iron_island_gammel_says")
     puts text("iron_island_gammel_tips").yellow
     print_long_text text("iron_island_start_tutorial_question").green
     puts
 
     yes_no_question(method(:show_tutorial), method(:skip_tutorial)) {
-        puts text("iron_island_gammel_says").white
+        puts text("iron_island_gammel_says")
         puts text("iron_island_gammel_unknown_answer").yellow
         print_long_text text("iron_island_start_tutorial_question").green
         puts
