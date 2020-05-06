@@ -1,41 +1,27 @@
-require_relative "utils/language.rb"
-require_relative 'utils/screen.rb'
-require_relative 'utils/controller.rb'
+require_relative "core/language.rb"
+require_relative 'core/screen.rb'
+require_relative 'core/controller.rb'
+require_relative 'core/tip.rb'
+require_relative 'core/string_utils.rb'
+require_relative 'persona/player.rb'
+require_relative 'core/string.rb'
 require 'colorize'
 
 module Game
-  @@tips = true
 
   include Language
   include Screen
   include Controller
+  include Tip
+  include StringUtils
 
-  def tips key, need_split=true
-    full_text = text(key)
-    if need_split
-      splited_text = full_text.split('*')
-      full_text = splited_text[0].green + splited_text[1].blue + splited_text[2].green
-    end
-    puts text("tips_label").green + " - " + full_text
+  @@player
+
+  def new_game
+    @@player = Player.new
   end
 
-  def change_symbol_color orginal_text, text_color, symbol_color
-    splited_text = orginal_text.split('*')
-    before_symbol = splited_text[0].send(text_color)
-    symbol =  splited_text[1].send(symbol_color)
-    after_symbol = splited_text[2].send(text_color)
-    return before_symbol + symbol + after_symbol
-  end
-
-  def tips?
-    @@tips
-  end
-
-  def show_tips
-    @@tips = true
-  end
-
-  def hide_tips
-    @@tips = false
+  def player
+    return @@player
   end
 end

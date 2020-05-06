@@ -1,8 +1,8 @@
-#tips
+# tips
 tips_places: Digite *lugares* para mostrar lugares aonde você pode ir
 tips_label: Dica
 
-#iron island
+# iron island
 iron_island_welcome: Você acaba de desembarcar na Ilha de Ferro!
 iron_island_information: A Ilha de Ferro é um lugar incrível, onde os
   forasteiros podem viver em tranquilidade e armonia. Mas claro, o Reino
@@ -22,6 +22,65 @@ iron_island_gammel_yes_tutorial: Ok forasteiro, vamos para as dicas
 iron_island_start_exploring: Você está livre para explorar a Ilha de Ferro do
   jeito que preferir. Digite *comandos* a qualquer momento para saber
   quais comandos estão disponíveis no jogo.
+
+# commands
+command_level:
+  - nivel
+  - nível
+  - meu nivel
+  - meu nível
+command_life:
+  - vida
+  - minha vida
+command_places:
+  - lugares
+  - lugar
+command_go:
+  - ir
+  - vai
+  - vamos
+  - ir para
+  - quero ir
+  - quero ir para
+  - vou para
+command_get:
+  - pegar
+  - juntar
+command_ajuda:
+  - ajuda
+  - comandos
+  - comando
+
+# tutorial
+tutorial_level: Muito bom! Vamos começar mostrando o seu nível
+tutorial_level_type: Digite *nível* para saber seu nível atual
+tutorial_level_typo: Você não digitou *nível* forasteiro
+tutorial_level_your_level: Você está no nível *nível valor*
+tutorial_life: Ok, agora é hora de mostrar o quanto você tem de vida
+tutorial_life_type: Digite *vida* para saber quanto de vida você tem
+tutorial_life_typo: Você não digitou *vida* forasteiro
+tutorial_life_your_life: Voce tem *vida valor* pontos de vida
+tutorial_places_well_done: Muito bom forasteiro!
+tutorial_places_how_to_go: Agora vou lhe mostrar como se deslocar na Ilha de Ferro
+tutorial_places_type: Digite *lugares* para mostrar os lugares disponíveis
+tutorial_places_typo: Você não digitou *lugares* forasteiro
+
+
+tutorial_fake_places:
+  - Vila de Ferro
+  - Castelo de Ferro
+  - Floresta de Ferro
+tutorial_fake_items:
+  - espada
+  - poção
+  - moeda
+tutorial_fake_help:
+  - nível
+  - vida
+  - lugares
+  - ir
+  - pegar
+
 
 
 talk: Conversar

@@ -12,6 +12,11 @@ module Language
     @@hash[key]
   end
 
+  def text_with_var key, var
+    to_be_modified = text key
+    to_be_modified.replace_between("*","*",var.to_s)
+  end
+
   def set_language language
     @@language = language
 

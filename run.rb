@@ -8,6 +8,7 @@ class Run
     clear
 
     choose_language
+    new_game
 
     (IronIsland.instance).go
   end
