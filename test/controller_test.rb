@@ -26,6 +26,10 @@ class ControllerTest < Minitest::Spec
     assert is "lugar", :places
   end
 
+  def test_is_not_partial_string
+    assert_equal false, is("vou sair", :go) # bug ir and sair
+  end
+
   def test_can_go_to
     avaliable_places = ["Castelo de Ferro", "Vila de Ferro"]
     command = "Ir para o Castelo de Ferro"
@@ -65,5 +69,47 @@ class ControllerTest < Minitest::Spec
     avaliable_items = ["Espada", "Porrete"]
     command = "pegar faca"
     assert_equal true, can_not_get_item?(command.downcase, avaliable_items)
+  end
+
+  def test_is_avaliable_command_true
+    avaliable_commands = [ :get, :level]
+    command = "quero saber meu nivel"
+    assert_equal true, is_avaliable_command?(command, avaliable_commands)
+  end
+
+  def test_is_avaliable_command_false
+    avaliable_commands = [ :get, :places]
+    command = "quero saber meu nivel"
+    assert_equal false, is_avaliable_command?(command, avaliable_commands)
+  end
+
+  def test_is_native_command_true
+    command = "quero saber meu nivel"
+    assert_equal true, is_native_command?(command)
+  end
+
+  def test_is_native_command_false
+    command = "quero saber uma cor"
+    assert_equal false, is_native_command?(command)
+  end
+
+  def test_can_go_to_h_true
+    avaliable_places = [:iron_castle, :iron_forest]
+    command = "quero ir para a floresta"
+    assert can_go_to_h command.downcase, avaliable_places
+  end
+
+  def test_can_go_to_h_false
+    avaliable_places = [:iron_castle, :iron_village]
+    command = "quero ir para a floresta"
+    assert_equal false, can_go_to_h(command.downcase, avaliable_places)
+  end
+
+  def test_get_command
+    command = "quero ir para a floresta"
+    assert_equal :go, get_command(command.downcase)
+
+    command = "quero pegar uma espada"
+    assert_equal :get, get_command(command.downcase)
   end
 end

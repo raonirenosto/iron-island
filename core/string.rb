@@ -10,7 +10,7 @@ class String
 
   def include_a? array
     array.each do |item|
-      if self.downcase.include? item.downcase
+      if self.downcase[/\b#{item.downcase}\b/]
         return true
       end
     end

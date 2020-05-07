@@ -6,6 +6,7 @@ all_commands:
   - ajuda
   - vida
   - nivel
+  - sair
 command_level:
   - nivel
   - nível
@@ -34,6 +35,24 @@ command_help:
   - ajuda
   - comandos
   - comando
+command_exit:
+  - sair
+  - quero sair
+  - exit
+
+# Command Places Values
+command_iron_village:
+  - vila de ferro
+  - vila ferro
+  - vila
+command_iron_castle:
+  - castelo
+  - castelo ferro
+  - castelo de ferro
+command_iron_forest:
+  - floresta
+  - floresta ferro
+  - floresta de ferro
 
 description_get: Mostrar o itens que podem ser pegos ou pegar um item
 description_go: Deslocar o jogador para o lugar informado
@@ -152,6 +171,11 @@ common_and: e
 common_going_to: Indo para
 common_you_get_to: Você chegou em
 common_info: "Informação:"
+
+# Places
+place_iron_village: Vila de Ferro
+place_iron_forest: Floresta de Ferro
+place_iron_castle: Castelo de Ferro
 
 
 

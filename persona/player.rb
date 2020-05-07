@@ -22,4 +22,14 @@ class Player
   def coins
     @@coins
   end
+
+  def show_level
+    puts "Você está no nivel ".yellow + self.level.to_s.blue
+    puts
+  end
+
+  def show_hp
+    puts "Você tem ".yellow + self.hp.to_s.blue + " pontos de vida".yellow
+    puts
+  end
 end
