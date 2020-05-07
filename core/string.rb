@@ -8,4 +8,13 @@ class String
     self.gsub!(/#{Regexp.escape(string1)}(.*?)#{Regexp.escape(string2)}/m, string_to_replace)
   end
 
+  def include_a? array
+    array.each do |item|
+      if self.downcase.include? item.downcase
+        return true
+      end
+    end
+    return false
+  end
+
 end

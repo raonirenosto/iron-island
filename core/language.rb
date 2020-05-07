@@ -24,10 +24,12 @@ module Language
   end
 
   def get_labels language
-    read_yaml "../translation/#{language}/labels_#{language}.yml"
+    read_yaml "/translation/#{language}/labels_#{language}.yml"
   end
 
   def read_yaml file
-    YAML::load_file(File.join(__dir__, file))
+    YAML::load_file(File.join(Dir.pwd,file))
+
+
   end
 end

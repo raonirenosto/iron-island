@@ -1,10 +1,11 @@
-require_relative "core/language.rb"
-require_relative 'core/screen.rb'
-require_relative 'core/controller.rb'
-require_relative 'core/tip.rb'
-require_relative 'core/string_utils.rb'
-require_relative 'persona/player.rb'
-require_relative 'core/string.rb'
+require "./core/language.rb"
+require './core/screen.rb'
+require './core/controller.rb'
+require './core/tip.rb'
+require './core/string_utils.rb'
+require './core/string.rb'
+require './core/flow.rb'
+require './persona/player.rb'
 require 'colorize'
 
 module Game
@@ -14,6 +15,7 @@ module Game
   include Controller
   include Tip
   include StringUtils
+  include Flow
 
   @@player
 

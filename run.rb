@@ -6,9 +6,9 @@ class Run
 
   def start
     clear
-
     choose_language
     new_game
+    start_controller
 
     (IronIsland.instance).go
   end
