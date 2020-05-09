@@ -1,115 +1,79 @@
 require 'minitest/autorun'
 require "./game.rb"
 require "./core/string.rb"
+require "./core/controller.rb"
+require "./core/meta_data.rb"
+require "./iron_island.rb"
 
 class ControllerTest < Minitest::Spec
+  include Controller
   include Game
 
   def setup
     set_language "pt"
-    start_controller
+    new_game
+    player.set_place IronIsland.instance
   end
 
-  def test_is_get
-    assert is "pega", :get
-    assert is "pegar", :get
-    assert is "junta", :get
-    assert is "juntar", :get
-    assert is "vou pegar", :get
-    assert is "vou pega", :get
-    assert is "vou junta", :get
-    assert is "vou juntar", :get
+  # def test_is_command
+  #   assert is_command? "pega", :get
+  #   assert is_command? "pegar", :get
+  #   assert is_command? "junta", :get
+  #   assert is_command? "juntar", :get
+  #   assert is_command? "vou pegar", :get
+  #   assert is_command? "vou pega", :get
+  #   assert is_command? "vou junta", :get
+  #   assert is_command? "vou juntar", :get
+  #
+  #   assert is_command? "lugares", :places
+  #   assert is_command? "lugar", :places
+  # end
+  #
+  # def test_is_not_command
+  #   assert is_not_command? "ir", :get
+  # end
+
+  def test_validate_commands_invalid_command
+
+      typed = "nada"
+
+      error = assert_raises RuntimeError do
+        validate_commands typed
+      end
+
+      assert error.message == "error_invalid_command"
   end
 
-  def test_is_places
-    assert is "lugares", :places
-    assert is "lugar", :places
+  def test_validate_commands_unavaliable_command
+
+      typed = "pegar tal coisa"
+
+      error = assert_raises RuntimeError do
+        validate_commands typed
+      end
+
+      assert error.message == "error_unavalibale_command"
   end
 
-  def test_is_not_partial_string
-    assert_equal false, is("vou sair", :go) # bug ir and sair
+  def test_validate_commands_unavaliable_command
+
+      typed = "pegar tal coisa"
+
+      error = assert_raises RuntimeError do
+        validate_commands typed
+      end
+
+      assert error.message == "error_unavalibale_command"
   end
 
-  def test_can_go_to
-    avaliable_places = ["Castelo de Ferro", "Vila de Ferro"]
-    command = "Ir para o Castelo de Ferro"
-    assert can_go_to command.downcase, avaliable_places
-  end
+  def test_validate_commands_invalid_place
 
-  def test_can_go_to_false
-    avaliable_places = ["Castelo de Ferro", "Vila de Ferro"]
-    command = "Ir para o Castelo de Barro"
-    assert_equal false, can_go_to(command.downcase, avaliable_places)
-  end
+      typed = "ir para wonderland"
 
-  def test_can_not_go_to
-    avaliable_places = ["Castelo de Ferro", "Vila de Ferro"]
-    command = "Ir para o Castelo de Barro"
-    assert_equal true, can_not_go_to(command.downcase, avaliable_places)
-  end
+      error = assert_raises RuntimeError do
+        validate_commands typed
+      end
 
-  def test_what_is_the_place
-    command = "Ir para a Vila de ferro"
-    assert_equal "Vila de Ferro", what_is_the_place(command)
-  end
-
-  def test_can_get_item_true
-    avaliable_items = ["Espada", "Porrete"]
-    command = "pegar porrete"
-    assert_equal true, can_get_item?(command.downcase, avaliable_items)
-  end
-
-  def test_can_get_item_false
-    avaliable_items = ["Espada", "Porrete"]
-    command = "pegar faca"
-    assert_equal false, can_get_item?(command.downcase, avaliable_items)
-  end
-
-  def test_can_not_get_item
-    avaliable_items = ["Espada", "Porrete"]
-    command = "pegar faca"
-    assert_equal true, can_not_get_item?(command.downcase, avaliable_items)
-  end
-
-  def test_is_avaliable_command_true
-    avaliable_commands = [ :get, :level]
-    command = "quero saber meu nivel"
-    assert_equal true, is_avaliable_command?(command, avaliable_commands)
-  end
-
-  def test_is_avaliable_command_false
-    avaliable_commands = [ :get, :places]
-    command = "quero saber meu nivel"
-    assert_equal false, is_avaliable_command?(command, avaliable_commands)
-  end
-
-  def test_is_native_command_true
-    command = "quero saber meu nivel"
-    assert_equal true, is_native_command?(command)
-  end
-
-  def test_is_native_command_false
-    command = "quero saber uma cor"
-    assert_equal false, is_native_command?(command)
-  end
-
-  def test_can_go_to_h_true
-    avaliable_places = [:iron_castle, :iron_forest]
-    command = "quero ir para a floresta"
-    assert can_go_to_h command.downcase, avaliable_places
-  end
-
-  def test_can_go_to_h_false
-    avaliable_places = [:iron_castle, :iron_village]
-    command = "quero ir para a floresta"
-    assert_equal false, can_go_to_h(command.downcase, avaliable_places)
-  end
-
-  def test_get_command
-    command = "quero ir para a floresta"
-    assert_equal :go, get_command(command.downcase)
-
-    command = "quero pegar uma espada"
-    assert_equal :get, get_command(command.downcase)
+      assert error.message == "error_invalid_place"
   end
 end

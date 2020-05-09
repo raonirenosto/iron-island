@@ -1,147 +1,76 @@
 require "./core/language.rb"
+require "./core/controller_utils.rb"
+require "./core/meta_data.rb"
+require "./core/array.rb"
 
 module Controller
+  include ControllerUtils
+  include MetaData
 
-  include Language
+  def validate_commands typed
+    symbols = get_all_symbols typed, all_avaliable_symbols
 
-  @@commands = nil
-  @@typed_command = nil
-  @@places = nil
-  @@items = nil
-
-  def start_controller
-    if language_was_set?
-      @@commands = {
-        :level => text("command_level"),
-        :life => text("command_life"),
-        :get => text("command_get"),
-        :places => text("command_places"),
-        :go => text("command_go"),
-        :help => text("command_help"),
-        :exit => text("command_exit"),
-        :all_commands => text("all_commands")
-      }
-      @@places = text("avaliable_places")
-      @@places_h = {
-        :iron_village => text("command_iron_village"),
-        :iron_castle => text("command_iron_castle"),
-        :iron_forest => text("command_iron_forest")
-      }
-      @@items = text("avaliable_items")
-    end
-  end
-
-  def is command, symbol
-    if not @@commands.include? symbol
-      puts "Command '#{symbol}' does not exist."
+    if symbols.empty?
+      raise "error_invalid_command"
     end
 
-    command.include_a? @@commands[symbol]
-  end
+    current_place = player.where_am_i
 
-  def is_not command, symbol
-    !is command, symbol
-  end
+    if not current_place.avaliable_commands.include_array? symbols
+      raise "error_unavalibale_command"
+    end
 
-  def is_avaliable_command? command, avaliable_commands
-    avaliable_commands.each do |avaliable_command|
-      if command.include_a? @@commands[avaliable_command]
-        return true
+    if symbols.include? :go
+      # check if place is not a valid one
+      if not current_place.avaliable_places.include_array? symbols
+        raise "error_invalid_place"
       end
     end
-    false
   end
 
-  def is_not_avaliable_command? command, avaliable_commands
-    !is_avaliable_command? command, avaliable_commands
+  def get_command_symbol symbols
+    get_symbol_from_hash all_command_symbols, symbols
   end
 
-  def is_native_command? command
-    is_avaliable_command? command, @@commands.keys
+  def get_place_symbol symbols
+    get_symbol_from_hash all_place_symbols, symbols
   end
 
-  def is_not_native_command? command
-    !is_native_command? command
-  end
-
-  def can_go_to command, avaliable_places
-    right_place = command.include_a? avaliable_places
-    is_go = is command, :go
-    return (is_go and right_place)
-  end
-
-  def can_go_to_h command, avaliable_places
-    right_place = false
-    is_go = is command, :go
-
-    avaliable_places.each do |avaliable_place|
-      if command.include_a? @@places_h[avaliable_place]
-        right_place = true
-      end
-    end
-
-    return (is_go and right_place)
-  end
-
-  def can_not_go_to command, avaliable_places
-    !can_go_to command, avaliable_places
-  end
-
-  def can_not_go_to_h command, avaliable_places
-    !can_go_to_h command, avaliable_places
-  end
-
-  def what_is_the_place command
-    @@places.each do |place|
-      if command.downcase.include? place.downcase
-        return place
+  def get_symbol_from_hash hash, symbols
+    hash.each do |symbol, command_sample|
+      if symbols.include? symbol
+        return symbol
       end
     end
     return nil
-  end
-
-  def can_get_item? command, avaliable_items
-    right_item = command.include_a? avaliable_items
-    is_get = is command, :get
-    return (is_get and right_item)
-  end
-
-  def can_not_get_item? command, avaliable_items
-    !can_get_item? command, avaliable_items
-  end
-
-  def what_item_is command
-    @@items.each do |item|
-      if command.downcase.include? item.downcase
-        return item
-      end
-    end
-    return nil
-  end
-
-  def command_description
-    text("command_description").sort.to_h
-  end
-
-  def get_command command
-    @@commands.each do |command_native, value|
-      if command.include_a? value
-        return command_native
-      end
-    end
-    nil
   end
 
   def execute typed
-    command = get_command typed
 
-    case command
+    begin
+      validate_commands typed
+    rescue RuntimeError => error
+      puts text(error.message).yellow
+      puts
+      return
+    end
+
+    symbols = get_all_symbols typed, all_avaliable_symbols
+
+    command_symbol = get_command_symbol symbols
+
+    case command_symbol
     when :level
-      player.show_level
+      show_level
     when :life
-      player.show_hp
+      show_hp
     when :help
       show_help
+    when :places
+      show_places
+    when :go
+      place_symbol = get_place_symbol symbols
+      go_to place_symbol
     when :exit
       puts "Até mais forasteiro"
       exit(true)
@@ -153,5 +82,38 @@ module Controller
       puts command + " = " + description.yellow
     end
     puts
+  end
+
+  def show_level
+    puts "Você está no nivel ".yellow + player.level.to_s.blue
+    puts
+  end
+
+  def show_hp
+    puts "Você tem ".yellow + player.hp.to_s.blue + " pontos de vida".yellow
+    puts
+  end
+
+  def show_places
+    current_location = player.where_am_i
+
+    puts "Lugares disponíveis:".yellow
+
+    current_location.avaliable_places.each do |place|
+      place_info = meta_data :places, place
+      puts place_info[:name]
+    end
+    puts
+  end
+
+  def show_help
+    command_description.each do |command, description|
+      puts command + " = " + description.yellow
+    end
+    puts
+  end
+
+  def go_to place_symbol
+    puts "place symbol " + place_symbol.to_s
   end
 end

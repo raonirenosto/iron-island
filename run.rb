@@ -6,11 +6,12 @@ class Run
 
   def start
     clear
-    choose_language
+    # choose_language
+    set_language "pt"
     new_game
-    start_controller
+    # start_controller
 
-    (IronIsland.instance).go
+    player.go IronIsland.instance
   end
 
   def choose_language

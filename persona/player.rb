@@ -23,13 +23,16 @@ class Player
     @@coins
   end
 
-  def show_level
-    puts "Você está no nivel ".yellow + self.level.to_s.blue
-    puts
+  def go place
+    @@place = place
+    @@place.go
   end
 
-  def show_hp
-    puts "Você tem ".yellow + self.hp.to_s.blue + " pontos de vida".yellow
-    puts
+  def where_am_i
+    return @@place
+  end
+
+  def set_place place
+    @@place = place
   end
 end

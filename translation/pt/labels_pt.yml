@@ -69,7 +69,10 @@ command_description:
    nivel: Mostrar o nível do jogador
    ajuda: Mostrar os comandos disponíveis para o jogador
 
-
+# Error
+error_invalid_command: "Comando não suportado. Digite *ajuda* para saber os comandos disponíveis"
+error_unavalibale_command: "Este comando não está disponível neste lugar"
+error_invalid_place: "Não é possivel ir para este lugar"
 
 # tips
 tips_places: Digite *lugares* para mostrar lugares aonde você pode ir

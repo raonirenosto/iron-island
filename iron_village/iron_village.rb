@@ -1,22 +1,22 @@
 require "singleton"
 require "colorize"
-require_relative "../place"
-require_relative "blacksmith"
-require_relative "sorceress"
-require_relative "iron_market"
-require_relative "iron_house"
-require_relative "iron_church"
-require_relative "iron_knight_order"
-require_relative "iron_horse_stable"
+# require_relative "../place"
+# require_relative "blacksmith"
+# require_relative "sorceress"
+# require_relative "iron_market"
+# require_relative "iron_house"
+# require_relative "iron_church"
+# require_relative "iron_knight_order"
+# require_relative "iron_horse_stable"
 
-class IronVillage < Place
+class IronVillage 
   include Singleton
 
   def go
     clear
     greetings
-    show_menu
-    get_user_option
+    # show_menu
+    # get_user_option
   end
 
   def greetings

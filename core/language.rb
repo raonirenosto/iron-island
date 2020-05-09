@@ -9,6 +9,13 @@ module Language
   end
 
   def text key
+    if not language_was_set?
+      puts "Default language was not set"
+      return
+    elsif not @@hash.include? key
+      puts "Key #{key} was not found"
+      return
+    end
     @@hash[key]
   end
 
@@ -29,7 +36,5 @@ module Language
 
   def read_yaml file
     YAML::load_file(File.join(Dir.pwd,file))
-
-
   end
 end
