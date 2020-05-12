@@ -1,4 +1,4 @@
-require_relative 'iron_island.rb'
+require_relative './places/iron_island.rb'
 require_relative 'game.rb'
 
 class Run

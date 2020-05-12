@@ -1,5 +1,5 @@
 require "singleton"
-require "colorize"
+require "./game"
 # require_relative "../place"
 # require_relative "blacksmith"
 # require_relative "sorceress"
@@ -9,8 +9,9 @@ require "colorize"
 # require_relative "iron_knight_order"
 # require_relative "iron_horse_stable"
 
-class IronVillage 
+class IronVillage
   include Singleton
+  include Game
 
   def go
     clear
@@ -20,14 +21,10 @@ class IronVillage
   end
 
   def greetings
-    puts "A placa do Vilarejo de Ferro diz:"
-    puts ""
-    puts "Bem-vindo a Vila de Ferro".yellow
-    puts ""
-    puts "Aqui vocês encontrará mercadorias e mercadores de todo o reino."
-    puts "Fique a vontade para perambular pela vila meu caro forasteiro,"
-    puts "mas para os baderneiros estamos atentos também, sob a proteção"
-    puts "do rei e dos cavaleiros de ferro."
+    puts text "iron_village_sign_says"
+    puts text("iron_village_welcome").green
+    print_long_text text("iron_village_sign2").green
+    puts
   end
 
   def show_menu
@@ -68,5 +65,13 @@ class IronVillage
       puts @@MESSAGE.green
       get_user_option
     end
+  end
+
+  def avaliable_commands
+    return [ :go, :level, :life, :help, :exit, :places ]
+  end
+
+  def avaliable_places
+    [ :iron_forest, :iron_castle]
   end
 end

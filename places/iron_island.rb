@@ -1,5 +1,5 @@
-require_relative 'game.rb'
-require_relative 'game/tutorial.rb'
+require './game.rb'
+require './game/tutorial.rb'
 require './core/controller.rb'
 require "singleton"
 

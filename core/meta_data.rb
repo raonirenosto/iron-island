@@ -1,4 +1,6 @@
-require "./iron_village/iron_village.rb"
+require "./places/iron_village/iron_village.rb"
+require "./places/iron_forest.rb"
+require "./places/iron_castle.rb"
 require "./core/language.rb"
 
 module MetaData
@@ -18,12 +20,12 @@ module MetaData
             },
             :iron_forest => {
               :commands => text("command_iron_forest"),
-              :instance => nil,
+              :instance => IronForest.instance,
               :name => text("place_iron_forest")
             },
             :iron_castle => {
               :commands => text("command_iron_castle"),
-              :instance => nil,
+              :instance => IronCastle.instance,
               :name => text("place_iron_castle")
             }
           },

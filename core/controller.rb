@@ -50,7 +50,8 @@ module Controller
     begin
       validate_commands typed
     rescue RuntimeError => error
-      puts text(error.message).yellow
+      puts change_symbol_color text(error.message),
+        :green, :blue
       puts
       return
     end
@@ -107,6 +108,7 @@ module Controller
   end
 
   def show_help
+    command_description = text "command_description"
     command_description.each do |command, description|
       puts command + " = " + description.yellow
     end
@@ -114,6 +116,8 @@ module Controller
   end
 
   def go_to place_symbol
-    puts "place symbol " + place_symbol.to_s
+    place_info = meta_data :places, place_symbol
+    place = place_info[:instance]
+    player.go place
   end
 end

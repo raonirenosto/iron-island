@@ -2,8 +2,11 @@ require './core/string.rb'
 
 module StringUtils
 
-  def change_symbol_color orginal_text, text_color, symbol_color
-    splited_text = orginal_text.split('*')
+  def change_symbol_color original_text, text_color, symbol_color
+    if not original_text.include? "*"
+      return original_text.send(text_color)
+    end
+    splited_text = original_text.split('*')
     before_symbol = splited_text[0].send(text_color)
     symbol =  splited_text[1].send(symbol_color)
     after_symbol = splited_text[2].send(text_color)
