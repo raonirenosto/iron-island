@@ -1,12 +1,10 @@
-require './game.rb'
-require './game/tutorial.rb'
-require './core/controller.rb'
+# require './game/tutorial.rb'
+# require './core/controller.rb'
 require "singleton"
 
 class IronIsland
   include Singleton
-  include Game
-  include Controller
+  # include Controller
 
   def go
     land
@@ -81,6 +79,10 @@ class IronIsland
   end
 
   def avaliable_places
-    [ :iron_village, :iron_forest, :iron_castle]
+    [ iron_village, iron_castle, iron_forest ]
+  end
+
+  def name
+    return text("iron_island_name")
   end
 end

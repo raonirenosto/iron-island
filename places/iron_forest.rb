@@ -1,8 +1,6 @@
-require "./game"
 require "singleton"
 
 class IronForest
-  include Game
   include Singleton
 
   def go
@@ -23,5 +21,9 @@ class IronForest
 
   def avaliable_places
     [ :iron_village, :iron_castle]
+  end
+
+  def name
+    return text("iron_forest_name")
   end
 end

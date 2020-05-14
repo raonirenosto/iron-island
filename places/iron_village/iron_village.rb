@@ -1,5 +1,5 @@
 require "singleton"
-require "./game"
+require "./core/game.rb"
 # require_relative "../place"
 # require_relative "blacksmith"
 # require_relative "sorceress"
@@ -11,7 +11,7 @@ require "./game"
 
 class IronVillage
   include Singleton
-  include Game
+  # include Game
 
   def go
     clear
@@ -73,5 +73,9 @@ class IronVillage
 
   def avaliable_places
     [ :iron_forest, :iron_castle]
+  end
+
+  def name
+    return text("iron_village_name")
   end
 end

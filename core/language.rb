@@ -24,7 +24,7 @@ module Language
     to_be_modified.replace_between("*","*",var.to_s)
   end
 
-  def set_language language
+  def load_language language
     @@language = language
 
     @@hash = get_labels @@language

@@ -1,4 +1,5 @@
 class Player
+
   @@hp
   @@level
   @@coins

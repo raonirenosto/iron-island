@@ -1,11 +1,8 @@
-require "./core/language.rb"
-require "./core/controller_utils.rb"
-require "./core/meta_data.rb"
 require "./core/array.rb"
 
-module Controller
-  include ControllerUtils
-  include MetaData
+class Controller
+
+  :attr_accessor :game_symbols
 
   def validate_commands typed
     symbols = get_all_symbols typed, all_avaliable_symbols
@@ -45,16 +42,14 @@ module Controller
     return nil
   end
 
+  def extract_symbol
+  end
+
   def execute typed
 
-    begin
-      validate_commands typed
-    rescue RuntimeError => error
-      puts change_symbol_color text(error.message),
-        :green, :blue
-      puts
-      return
-    end
+
+
+    validate_commands typed
 
     symbols = get_all_symbols typed, all_avaliable_symbols
 
@@ -78,46 +73,71 @@ module Controller
     end
   end
 
-  def show_help
-    command_description.each do |command, description|
-      puts command + " = " + description.yellow
+  def load_command command, avaliable_places, avaliable_commands
+    validate_commands typed
+
+    symbols = get_all_symbols typed, all_avaliable_symbols
+
+    command_symbol = get_command_symbol symbols
+
+    case command_symbol
+    when :level
+      show_level
+    when :life
+      show_hp
+    when :help
+      show_help
+    when :places
+      show_places
+    when :go
+      place_symbol = get_place_symbol symbols
+      go_to place_symbol
+    when :exit
+      puts "Até mais forasteiro"
+      exit(true)
     end
-    puts
   end
 
-  def show_level
-    puts "Você está no nivel ".yellow + player.level.to_s.blue
-    puts
-  end
-
-  def show_hp
-    puts "Você tem ".yellow + player.hp.to_s.blue + " pontos de vida".yellow
-    puts
-  end
-
-  def show_places
-    current_location = player.where_am_i
-
-    puts "Lugares disponíveis:".yellow
-
-    current_location.avaliable_places.each do |place|
-      place_info = meta_data :places, place
-      puts place_info[:name]
-    end
-    puts
-  end
-
-  def show_help
-    command_description = text "command_description"
-    command_description.each do |command, description|
-      puts command + " = " + description.yellow
-    end
-    puts
-  end
-
-  def go_to place_symbol
-    place_info = meta_data :places, place_symbol
-    place = place_info[:instance]
-    player.go place
-  end
+  # def show_help
+  #   command_description.each do |command, description|
+  #     puts command + " = " + description.yellow
+  #   end
+  #   puts
+  # end
+  #
+  # def show_level
+  #   puts "Você está no nivel ".yellow + player.level.to_s.blue
+  #   puts
+  # end
+  #
+  # def show_hp
+  #   puts "Você tem ".yellow + player.hp.to_s.blue + " pontos de vida".yellow
+  #   puts
+  # end
+  #
+  # def show_places
+  #   current_location = player.where_am_i
+  #
+  #   puts "Lugares disponíveis:".yellow
+  #
+  #   current_location.avaliable_places.each do |place|
+  #     place_info = meta_data :places, place
+  #     puts place_info[:name]
+  #   end
+  #   puts
+  # end
+  #
+  # def show_help
+  #   command_description = text "command_description"
+  #   command_description.each do |command, description|
+  #     puts command + " = " + description.yellow
+  #   end
+  #   puts
+  # end
+  #
+  # def go_to place_symbol
+  #   place_info = meta_data :places, place_symbol
+  #   place = place_info[:instance]
+  #   player.go place
+  # end
 end
