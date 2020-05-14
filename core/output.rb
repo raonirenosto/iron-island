@@ -3,12 +3,13 @@ require "colorize"
 
 module Output
 
-  def out(key, type= :normal, replace= nil, variable:nil)
+  def out(key, type= :normal, replace= nil, variable: nil)
     if (type == :code_error)
       puts key.red
       return
     end
 
+    break_line = true
     text_to_print = text(key)
     case type
     when :normal
@@ -24,8 +25,18 @@ module Output
         puts text_to_print.yellow
       end
     when :information
-      puts text_with_var(key, variable).light_blue
+      if variable == nil
+        puts text_to_print.light_blue
+      else
+        puts text_with_var(key, variable).light_blue
+      end
+    when :speak_say
+      puts text_to_print.light_white
+      break_line = false
+    when :speak_text
+      puts text_to_print.green
     end
-    puts
+
+    puts if break_line
   end
 end

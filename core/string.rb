@@ -5,7 +5,7 @@ class String
   end
 
   def replace_between string1, string2, string_to_replace
-    self.gsub!(/#{Regexp.escape(string1)}(.*?)#{Regexp.escape(string2)}/m, string_to_replace)
+    self.gsub(/#{Regexp.escape(string1)}(.*?)#{Regexp.escape(string2)}/m, string_to_replace)
   end
 
   def include_a? array

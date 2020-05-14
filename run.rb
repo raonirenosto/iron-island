@@ -1,22 +1,21 @@
-# require './places/iron_island.rb'
-# require_relative 'game.rb'
 require "./core/game.rb"
+require "./core/factory.rb"
 
 class Run
 
+  include Game
+
   def start
-    # clear
+    clear
     # choose_language
 
-    game = Game.new
-    game.set_language "pt"
-    game.new_game
+    set_language "pt"
+    new_game
     # new_game
     # start_controller
+    iron_island = Factory.instance.iron_island
 
-    iron_land = game.iron_island
-
-    game.go iron_land
+    go_to iron_island
   end
 
   # def choose_language

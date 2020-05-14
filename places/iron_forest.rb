@@ -1,7 +1,9 @@
-require "singleton"
+require "./core/game.rb"
+require "./places/place.rb"
+require "./core/factory.rb"
 
-class IronForest
-  include Singleton
+class IronForest < Place
+  include Game
 
   def go
     clear
@@ -10,20 +12,26 @@ class IronForest
 
   def show_sign
     puts text "iron_forest_sign_says"
-    puts text("iron_village_welcome").green
-    puts text("iron_village_sign2").green
+    puts text("iron_forest_welcome").green
+    puts text("iron_forest_sign2").green
     puts
   end
 
   def avaliable_commands
-    return [ :go, :level, :life, :help, :exit, :places ]
+    super + [ :go, :level, :life, :places ]
   end
 
   def avaliable_places
-    [ :iron_village, :iron_castle]
+    iron_village = Factory.instance.iron_village
+    iron_castle = Factory.instance.iron_castle
+    [ iron_village, iron_castle]
   end
 
   def name
-    return text("iron_forest_name")
+    text("iron_forest_name")
+  end
+
+  def symbol
+    :iron_forest
   end
 end

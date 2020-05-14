@@ -7,24 +7,20 @@ require './core/flow.rb'
 # require './core/controller.rb'
 require './core/game_symbol.rb'
 require './core/output.rb'
-require './places/iron_island.rb'
+# require './places/iron_island.rb'
 # require './places/iron_village/iron_village.rb'
 # require './places/iron_castle.rb'
 # require './places/iron_forest.rb'
 require './persona/player.rb'
 require 'colorize'
 
-class Game
+module Game
 
   include Language
   include Screen
   include Tip
   include StringUtils
   include Output
-  # include Flow
-  # include Controller
-
-  # Controller should be included after tutorial refactor
 
   @@player
   @@game_symbol
@@ -51,6 +47,12 @@ class Game
           :help => { :commands => text("command_help") },
           :exit => { :commands => text("command_exit") }
         }
+    @@game_symbol.place_symbols =
+        {
+          :iron_castle => { :commands => text("command_iron_castle") },
+          :iron_village => { :commands => text("command_iron_village") },
+          :iron_forest => { :commands => text("command_iron_forest") }
+        }
   end
 
   def player
@@ -62,8 +64,12 @@ class Game
     # Extract all avaliable symbols
     symbol = @@game_symbol.extract_action_symbol command
 
-    # Check if player typed any invalid command
-    check_for_errors symbol
+    # Check if player typed any invalid command and print errors
+    valid_command = validate_command symbol, command
+
+    if not valid_command
+      return
+    end
 
     case symbol
     when :level
@@ -72,18 +78,31 @@ class Game
       out "show_hp", :information, variable: @@player.hp
     when :places
       show_places
+    when :go
+      place_symbol = @@game_symbol.extract_place_symbol command
+      place = @@player.where_am_i.avaliable_place_by_symbol(place_symbol)
+      go_to place
+    when :help
+      show_help
     when :exit
-      out "show_exit"
+      out "show_exit", :information
       exit(true)
     end
-
   end
 
-  def check_for_errors symbol
+  def execute_loop
+    loop do
+      command = gets.chomp
+      puts
+      execute command
+    end
+  end
+
+  def validate_command symbol, typed
     # Show error for invalid command
     if symbol == nil
       out "error_invalid_command", :error, "*"
-      return
+      return false
     end
 
     # Get actual place
@@ -92,36 +111,43 @@ class Game
     # Check if command is avaliable on location
     if (not place.avaliable_commands.include? symbol)
       out "error_unavalibale_command", :error
-      return
+      return false
     end
+
+    # Check if place is avaliable, if command is :go
+    if symbol == :go
+      place_symbol = @@game_symbol.extract_place_symbol typed
+      place = @@player.where_am_i.avaliable_place_by_symbol(place_symbol)
+
+      if place == nil
+        out "error_invalid_place", :error, "*"
+        return false
+      end
+    end
+
+    return true
   end
 
   def show_places
     current_location = @@player.where_am_i
-    out "show_places"
+    out "show_places", :information
     current_location.avaliable_places.each do |place|
-      puts place.name.yellow
+      puts place.name.green
     end
     puts
   end
 
-  def go place
-    place.set_place place
+  def show_help
+    out "show_help", :information
+    hash_commands = text "command_description"
+    hash_commands.each do |key, text|
+      puts key.light_blue + " = " +  text
+    end
+    puts
   end
 
-  def iron_village
-    IronVillage.instance
-  end
-
-  def iron_island
-    IronIsland.instance
-  end
-
-  def iron_forest
-    IronForest.instance
-  end
-
-  def iron_castle
-    IronCastle.instance
+  def go_to place
+    @@player.set_place place
+    place.go
   end
 end

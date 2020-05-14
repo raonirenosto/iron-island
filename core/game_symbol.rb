@@ -20,4 +20,9 @@ class GameSymbol
     symbol = self.extract_symbol(text, self.action_symbols)
     return symbol[0] if symbol != nil
   end
+
+  def extract_place_symbol text
+    symbol = self.extract_symbol(text, self.place_symbols)
+    return symbol[0] if symbol != nil
+  end
 end

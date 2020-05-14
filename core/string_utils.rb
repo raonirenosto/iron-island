@@ -48,6 +48,4 @@ module StringUtils
     #   end
     # end
   end
-
-
 end
