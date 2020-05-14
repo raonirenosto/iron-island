@@ -35,6 +35,9 @@ module Output
       break_line = false
     when :speak_text
       puts text_to_print.green
+    else
+      puts "Type #{type} is not valid".red
+      return
     end
 
     puts if break_line

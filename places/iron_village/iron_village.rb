@@ -21,7 +21,7 @@ class IronVillage < Place
   def show_sign
     out "iron_village_sign_says", :speak_say
     out  "iron_village_welcome", :speak_text
-
+    
     out "iron_village_sign2_says", :speak_say
     out  "iron_village_sign2", :speak_text
   end
@@ -33,7 +33,8 @@ class IronVillage < Place
   def avaliable_places
     iron_forest = Factory.instance.iron_forest
     iron_castle = Factory.instance.iron_castle
-    [ iron_forest, iron_castle]
+    sorceress = Factory.instance.sorceress
+    [ iron_forest, iron_castle, sorceress]
   end
 
   def name

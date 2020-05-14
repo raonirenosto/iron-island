@@ -2,6 +2,7 @@ require './places/iron_island.rb'
 require './places/iron_village/iron_village.rb'
 require './places/iron_castle.rb'
 require './places/iron_forest.rb'
+require './places/iron_village/sorceress.rb'
 require 'singleton'
 
 class Factory
@@ -11,12 +12,10 @@ class Factory
   @@iron_village = nil
   @@iron_castle = nil
   @@iron_forest = nil
+  @@sorceress = nil
 
   def iron_island
-    if @@iron_island == nil
-      @@iron_island = IronIsland.new
-    end
-    return @@iron_island
+    init @@iron_island, IronIsland
   end
 
   def iron_village
@@ -38,5 +37,19 @@ class Factory
       @@iron_castle = IronCastle.new
     end
     return @@iron_castle
+  end
+
+  def sorceress
+    if @@sorceress == nil
+      @@sorceress = Sorceress.new
+    end
+    return @@sorceress
+  end
+
+  def init variable, classz
+    if variable == nil
+      variable = classz.new
+    end
+    return variable
   end
 end

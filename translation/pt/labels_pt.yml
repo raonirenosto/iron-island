@@ -53,6 +53,10 @@ command_iron_forest:
   - floresta
   - floresta ferro
   - floresta de ferro
+command_sorceress:
+  - feiticeira
+  - bruxa
+  - aria
 
 description_get: Mostrar o itens que podem ser pegos ou pegar um item
 description_go: Deslocar o jogador para o lugar informado
@@ -103,6 +107,13 @@ iron_forest_name: Floresta de Ferro
 
 # iron castle
 iron_castle_name: "Castelo de Ferro"
+
+# sorceress
+sorceress_get_to_tent: "Você caminhou até a tenda da feiticeira"
+sorceress_enter_tent: "Você entrou na tenda da feiticeira"
+sorceress_says: "Aria pergunta:"
+sorceress_asks: "Em que o poder da magia pode ser útil?"
+sorceress_name: "Feiticeira"
 
 # commands
 

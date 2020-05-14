@@ -51,7 +51,8 @@ module Game
         {
           :iron_castle => { :commands => text("command_iron_castle") },
           :iron_village => { :commands => text("command_iron_village") },
-          :iron_forest => { :commands => text("command_iron_forest") }
+          :iron_forest => { :commands => text("command_iron_forest") },
+          :sorceress => { :commands => text("command_sorceress") }
         }
   end
 
@@ -149,5 +150,9 @@ module Game
   def go_to place
     @@player.set_place place
     place.go
+  end
+
+  def delay
+    sleep(1)
   end
 end
