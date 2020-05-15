@@ -2,8 +2,7 @@ require "./core/string"
 
 class GameSymbol
 
-  attr_accessor :action_symbols, :place_symbols
-
+  attr_accessor :action_symbols, :place_symbols, :menu_symbols
 
   def extract_symbol text, hash_symbols
     symbols = []
@@ -24,5 +23,20 @@ class GameSymbol
   def extract_place_symbol text
     symbol = self.extract_symbol(text, self.place_symbols)
     return symbol[0] if symbol != nil
+  end
+
+  def extract_menu_symbol text
+    symbol = self.extract_symbol(text, self.menu_symbols)
+    return symbol[0] if symbol != nil
+  end
+
+  def symbol_name symbol
+    if self.action_symbols.include? symbol
+      return self.action_symbols[symbol][:name]
+    elsif self.place_symbols.include? symbol
+      return self.place_symbols[symbol][:name]
+    elsif self.menu_symbols.include? symbol
+      return self.menu_symbols[symbol][:name]
+    end
   end
 end

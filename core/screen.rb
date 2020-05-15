@@ -35,7 +35,7 @@ module Screen
   end
 
   def wait_until_type
-    puts "Aperte enter para prosseguir".green
+    puts "Aperte enter para prosseguir".light_blue
     gets.chomp
   end
 end

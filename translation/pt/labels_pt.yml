@@ -39,6 +39,7 @@ command_exit:
   - sair
   - quero sair
   - exit
+command_exit_name: sair
 
 # Command Places Values
 command_iron_village:
@@ -57,6 +58,32 @@ command_sorceress:
   - feiticeira
   - bruxa
   - aria
+
+# Menu commands
+command_talk:
+  - falar
+  - fala
+  - conversar
+  - conversa
+command_talk_name: conversar
+
+command_buy:
+  - comprar
+  - compra
+command_buy_name: comprar
+
+command_sell:
+  - vende
+  - vender
+command_sell_name: vender
+
+command_task:
+  - tarefa
+command_task_name: tarefa
+
+command_back:
+  - voltar
+command_back_name: voltar
 
 description_get: Mostrar o itens que podem ser pegos ou pegar um item
 description_go: Deslocar o jogador para o lugar informado
@@ -77,6 +104,7 @@ command_description:
 error_invalid_command: "Comando não suportado. Digite *ajuda* para saber os comandos disponíveis"
 error_unavalibale_command: "Este comando não está disponível neste lugar"
 error_invalid_place: "Não é possivel ir para este lugar. Digite *lugares*, para ver lugares disponíveis"
+error_invalid_menu_option: "Opção inválida"
 
 # tips
 tips_places: Digite *lugares* para mostrar lugares aonde você pode ir
@@ -111,9 +139,15 @@ iron_castle_name: "Castelo de Ferro"
 # sorceress
 sorceress_get_to_tent: "Você caminhou até a tenda da feiticeira"
 sorceress_enter_tent: "Você entrou na tenda da feiticeira"
-sorceress_says: "Aria pergunta:"
-sorceress_asks: "Em que o poder da magia pode ser útil?"
+sorceress_says: "Aria diz:"
+sorceress_asks: "Aria pergunta:"
+sorceress_asks_text: "Em que o poder da magia pode ser útil?"
 sorceress_name: "Feiticeira"
+sorceress_see_you: "Até mais forasteiro"
+sorceress_bye: "Que a magia esteja com você!"
+sorceress_talk_magic: O ferro é importante para o Reino de Ferro, mas somente a
+  magia tem o poder de curar. O ferro é importante para o Reino de Ferro, mas
+   somente a magia tem o poder de curar.
 
 # commands
 
@@ -207,8 +241,6 @@ common_info: "Informação:"
 place_iron_village: Vila de Ferro
 place_iron_forest: Floresta de Ferro
 place_iron_castle: Castelo de Ferro
-
-
 
 talk: Conversar
 buy: Comprar

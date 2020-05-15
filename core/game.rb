@@ -25,7 +25,6 @@ module Game
   @@player
   @@game_symbol
 
-
   def set_language language
     load_language language
   end
@@ -45,7 +44,10 @@ module Game
           :places => { :commands => text("command_places") },
           :go => { :commands => text("command_go") },
           :help => { :commands => text("command_help") },
-          :exit => { :commands => text("command_exit") }
+          :exit =>  {
+                      :commands => text("command_exit"),
+                      :name => text("command_exit_name")
+                    }
         }
     @@game_symbol.place_symbols =
         {
@@ -54,6 +56,37 @@ module Game
           :iron_forest => { :commands => text("command_iron_forest") },
           :sorceress => { :commands => text("command_sorceress") }
         }
+    @@game_symbol.menu_symbols =
+        {
+          :talk =>  {
+                      :commands => text("command_talk"),
+                      :name =>  text("command_talk_name")
+                    },
+          :buy =>   {
+                      :commands => text("command_buy"),
+                      :name =>  text("command_buy_name")
+                    },
+          :sell =>  {
+                      :commands => text("command_sell"),
+                      :name =>  text("command_sell_name")
+                    },
+          :task =>  {
+                      :commands => text("command_task"),
+                      :name => text("command_task_name")
+                    },
+          :exit =>  {
+                      :commands => text("command_exit"),
+                      :name => text("command_exit_name")
+                    },
+          :back =>  {
+                      :commands => text("command_back"),
+                      :name => text("command_back_name")
+                    }
+        }
+  end
+
+  def game_symbol
+    return @@game_symbol
   end
 
   def player
