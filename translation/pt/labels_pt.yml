@@ -147,7 +147,12 @@ sorceress_see_you: "Até mais forasteiro"
 sorceress_bye: "Que a magia esteja com você!"
 sorceress_talk_magic: O ferro é importante para o Reino de Ferro, mas somente a
   magia tem o poder de curar. O ferro é importante para o Reino de Ferro, mas
-   somente a magia tem o poder de curar.
+   somente a magia tem o poder de curar
+sorceress_talk_kandromus_1: Kandromus já foi o feiticeiro da Vila de Ferro
+sorceress_talk_kandromus_2: Infelizmente, Kandromus se envolveu com magia negra
+sorceress_talk_kandromus_3: Após conspirar para matar o rei Karim, ele foi
+  banido do Reino de Ferro
+sorceress_talk_kandromus_4: Atualmente seu refúgio é no Penhasco Sombrio  
 
 # commands
 

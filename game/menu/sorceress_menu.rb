@@ -55,8 +55,16 @@ class SorceressMenu < Menu
 
   def talk_kandromus
     out "sorceress_says", :speak_say
-    puts "Talk about kandromus..".green
-    puts
+    out "sorceress_talk_kandromus_1", :speak_text
+    delay
+    out "sorceress_says", :speak_say
+    out "sorceress_talk_kandromus_2", :speak_text
+    delay
+    out "sorceress_says", :speak_say
+    out "sorceress_talk_kandromus_3", :speak_text
+    delay
+    out "sorceress_says", :speak_say
+    out "sorceress_talk_kandromus_4", :speak_text
     wait_until_type
   end
 
