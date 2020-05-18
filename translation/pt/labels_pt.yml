@@ -35,6 +35,13 @@ command_help:
   - ajuda
   - comandos
   - comando
+command_quests:
+  - missões
+  - missoes
+  - missao
+  - missão
+  - tarefa
+  - tarefas
 command_exit:
   - sair
   - quero sair
@@ -77,13 +84,22 @@ command_sell:
   - vender
 command_sell_name: vender
 
-command_task:
+command_quest:
   - tarefa
-command_task_name: tarefa
+command_quest_name: tarefa
 
 command_back:
   - voltar
 command_back_name: voltar
+
+# comand quests
+command_quest_herb:
+  - erva
+  - ervas
+  - ervas magicas
+  - erva magica
+  - ervas mágicas
+command_quest_herb_name: Ervas Mágicas
 
 description_get: Mostrar o itens que podem ser pegos ou pegar um item
 description_go: Deslocar o jogador para o lugar informado
@@ -152,7 +168,21 @@ sorceress_talk_kandromus_1: Kandromus já foi o feiticeiro da Vila de Ferro
 sorceress_talk_kandromus_2: Infelizmente, Kandromus se envolveu com magia negra
 sorceress_talk_kandromus_3: Após conspirar para matar o rei Karim, ele foi
   banido do Reino de Ferro
-sorceress_talk_kandromus_4: Atualmente seu refúgio é no Penhasco Sombrio  
+sorceress_talk_kandromus_4: Atualmente seu refúgio é no Penhasco Sombrio
+sorceress_quest_herb_description_1: Eu estou precisando de algumas ervas mágicas
+  para preparar as minhas poções.
+sorceress_quest_herb_description_2: Você não estaria interessado em ganhar
+  algumas moedas de ferro forasteiro?
+sorceress_quest_herb_unknown_answer_1: Não entendi sua respota forasteiro
+sorceress_quest_herb_unknown_answer_2: Você aceita a missão sim ou não?
+sorceress_quest_herb_decline_quest: Como prefirir forasteiro
+sorceress_quest_herb_accept_quest_1: "Muito bom! Estou realmente precisando destas
+ervas"
+sorceress_quest_herb_accept_quest_2: "Você vai achá-las no Pantano Sombrio"
+
+# quests
+quest_herb_name: Ervas Mágicas
+quest_herb_description: Vá até o Pantano Sombrio e pegue as ervas mágica para Aria
 
 # commands
 
@@ -241,6 +271,8 @@ common_and: e
 common_going_to: Indo para
 common_you_get_to: Você chegou em
 common_info: "Informação:"
+common_avaliable_options: "Opções disponíveis:"
+common_no_options: "Nenhuma opção no momento"
 
 # Places
 place_iron_village: Vila de Ferro
@@ -265,3 +297,8 @@ show_hp: "Você tem *valor vida* pontos de vida"
 show_exit: "Até mais forasteiro"
 show_places: "Lugares disponíveis:"
 show_help: "Comandos disponíveis no game:"
+show_quests: "Missões aceitas:"
+show_quests_no_mission: "Você ainda não tem nenhuma missão"
+
+# Information
+info_quest_new: "Você pode ver suas missões digitando *missões* (fora do menu)"

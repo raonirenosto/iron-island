@@ -30,6 +30,8 @@ module Output
       else
         puts text_with_var(key, variable).light_blue
       end
+    when :information_highlight
+      puts change_symbol_color(text_to_print, :light_blue, :yellow)
     when :speak_say
       puts text_to_print.light_white
       break_line = false

@@ -14,6 +14,6 @@ class Place
   end
 
   def avaliable_commands
-    [ :help, :exit ]
+    [ :help, :exit, :quests ]
   end
 end

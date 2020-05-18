@@ -21,8 +21,8 @@ class Menu
         show_buy
       when :sell
         show_sell
-      when :task
-        show_task
+      when :quest
+        show_quest
       end
       puts
     end while symbol != :exit
@@ -48,7 +48,7 @@ class Menu
   def show_sell
   end
 
-  def show_task
+  def show_quest
   end
 
   def avaliable_commands

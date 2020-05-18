@@ -4,13 +4,8 @@ require './core/tip.rb'
 require './core/string_utils.rb'
 require './core/string.rb'
 require './core/flow.rb'
-# require './core/controller.rb'
 require './core/game_symbol.rb'
 require './core/output.rb'
-# require './places/iron_island.rb'
-# require './places/iron_village/iron_village.rb'
-# require './places/iron_castle.rb'
-# require './places/iron_forest.rb'
 require './persona/player.rb'
 require 'colorize'
 
@@ -21,6 +16,7 @@ module Game
   include Tip
   include StringUtils
   include Output
+  include Flow
 
   @@player
   @@game_symbol
@@ -44,6 +40,7 @@ module Game
           :places => { :commands => text("command_places") },
           :go => { :commands => text("command_go") },
           :help => { :commands => text("command_help") },
+          :quests => { :commands => text("command_quests") },
           :exit =>  {
                       :commands => text("command_exit"),
                       :name => text("command_exit_name")
@@ -70,9 +67,9 @@ module Game
                       :commands => text("command_sell"),
                       :name =>  text("command_sell_name")
                     },
-          :task =>  {
-                      :commands => text("command_task"),
-                      :name => text("command_task_name")
+          :quest =>  {
+                      :commands => text("command_quest"),
+                      :name => text("command_quest_name")
                     },
           :exit =>  {
                       :commands => text("command_exit"),
@@ -83,6 +80,15 @@ module Game
                       :name => text("command_back_name")
                     }
         }
+
+      @@game_symbol.quest_symbols =
+          {
+            :quest_herb =>  {
+                        :commands => text("command_quest_herb"),
+                        :name =>  text("command_quest_herb_name")
+                      }
+
+          }
   end
 
   def game_symbol
@@ -118,6 +124,8 @@ module Game
       go_to place
     when :help
       show_help
+    when :quests
+      show_quests
     when :exit
       out "show_exit", :information
       exit(true)
@@ -183,6 +191,21 @@ module Game
   def go_to place
     @@player.set_place place
     place.go
+  end
+
+  def show_quests
+    out "show_quests", :information
+    @@player.quests.each do |quest|
+      puts quest.name.blue + ": ".blue  + quest.description.yellow
+    end
+    if @@player.quests.size == 0
+      puts text("show_quests_no_mission").yellow
+    end
+    puts
+  end
+
+  def start_quest quest
+    @@player.start_quest quest
   end
 
   def delay
