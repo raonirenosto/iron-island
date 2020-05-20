@@ -42,6 +42,16 @@ command_quests:
   - missão
   - tarefa
   - tarefas
+command_actions:
+  - ações
+  - acoes
+  - açoes
+  - ação
+  - acao
+command_search:
+  - procurar
+  - procura
+command_search_name: procurar
 command_exit:
   - sair
   - quero sair
@@ -65,6 +75,11 @@ command_sorceress:
   - feiticeira
   - bruxa
   - aria
+command_dark_swamp:
+  - pântano
+  - pantano
+  - pantano sombrio
+  - pântano sombrio
 
 # Menu commands
 command_talk:
@@ -86,7 +101,8 @@ command_sell_name: vender
 
 command_quest:
   - tarefa
-command_quest_name: tarefa
+  - tarefas
+command_quest_name: tarefas
 
 command_back:
   - voltar
@@ -100,6 +116,28 @@ command_quest_herb:
   - erva magica
   - ervas mágicas
 command_quest_herb_name: Ervas Mágicas
+command_quest_herb_finish:
+  - erva
+  - ervas
+  - ervas magicas
+  - erva magica
+  - ervas mágicas
+  - entregar
+  - entregar erva
+  - entregar ervas
+  - entregar ervas mágicas
+  - entregar ervas magicas
+command_quest_herb_name_finish: Entregar Ervas Mágicas
+
+
+# command items
+command_item_magic_herb:
+  - erva
+  - ervas
+  - ervas magicas
+  - erva magica
+  - ervas mágicas
+command_item_magic_herb_name: Ervas Mágicas
 
 description_get: Mostrar o itens que podem ser pegos ou pegar um item
 description_go: Deslocar o jogador para o lugar informado
@@ -121,6 +159,8 @@ error_invalid_command: "Comando não suportado. Digite *ajuda* para saber os com
 error_unavalibale_command: "Este comando não está disponível neste lugar"
 error_invalid_place: "Não é possivel ir para este lugar. Digite *lugares*, para ver lugares disponíveis"
 error_invalid_menu_option: "Opção inválida"
+error_invalid_search: "Não é possível procurar por este item. Digite *ações*, para ver as ações disponíveis"
+error_invalid_item: "Não é possível pegar este item. Digite *pegar*, para ver os itens disponíveis"
 
 # tips
 tips_places: Digite *lugares* para mostrar lugares aonde você pode ir
@@ -136,21 +176,24 @@ iron_island_start_exploring: Você está livre para explorar a Ilha de Ferro do
   quais comandos estão disponíveis no jogo.
 iron_island_name: Ilha de Ferro
 
-# iron village
-iron_village_sign_says: "A placa do Vilarejo de Ferro diz:"
-iron_village_welcome: Bem-vindo a Vila de Ferro
-iron_village_sign2_says: "Mais abaixo a placa diz:"
-iron_village_sign2: "Lugar sob a proteção do rei e dos cavaleiros de ferro."
-iron_village_name: "Vila de Ferro"
-
 # iron forest
 iron_forest_sign_says: "A placa na entrada da Floresta de Ferro diz:"
 iron_forest_welcome: Floresta de Ferro
 iron_forest_sign2: "A partir deste lugar, você não tem mais a proteção do Rei"
 iron_forest_name: Floresta de Ferro
 
+# dark swamp
+dark_swamp_name: Pântano Sombrio
+
 # iron castle
 iron_castle_name: "Castelo de Ferro"
+
+# iron village
+iron_village_sign_says: "A placa do Vilarejo de Ferro diz:"
+iron_village_welcome: Bem-vindo a Vila de Ferro
+iron_village_sign2_says: "Mais abaixo a placa diz:"
+iron_village_sign2: "Lugar sob a proteção do rei e dos cavaleiros de ferro."
+iron_village_name: "Vila de Ferro"
 
 # sorceress
 sorceress_get_to_tent: "Você caminhou até a tenda da feiticeira"
@@ -179,6 +222,21 @@ sorceress_quest_herb_decline_quest: Como prefirir forasteiro
 sorceress_quest_herb_accept_quest_1: "Muito bom! Estou realmente precisando destas
 ervas"
 sorceress_quest_herb_accept_quest_2: "Você vai achá-las no Pantano Sombrio"
+sorceress_deliver_herbs_1: "Oh, as Ervas Mágicas!"
+sorceress_deliver_herbs_2: "Não pensei que você encontraria tão rápido"
+sorceress_deliver_herbs_3: "Obrigado forasteiro, aqui estão suas moedas"
+sorceress_deliver_remove_herbs_from_bag: "Você tirou as Ervas Mágicas da bolsa"
+sorceress_deliver_herbs_to_aria: "Você entregou as Ervas Mágicas para Aria"
+sorceress_give_coins: "Você ganhou 5 moedas de ferro"
+
+# dark swamp
+dark_swamp_arrived: "Você está caminhando ao longo da Floresta de Ferro em
+  direção ao Pântano Sombrio"
+dark_swamp_arrived2: "Você chegou no Pântano Sombrio"
+dark_swamp_search_magic_herbs: "Você está procurando as Ervas Mágicas"
+dark_swamp_found_magic_herbs: "Você encontrou as Ervas Mágicas!"
+dark_swamp_get_magic_herbs: "Você pegou as Ervas Mágicas"
+dark_swamp_put_magic_herbs_bag: "Você colocou as Ervas Mágicas na sua bolsa"
 
 # quests
 quest_herb_name: Ervas Mágicas
@@ -299,6 +357,9 @@ show_places: "Lugares disponíveis:"
 show_help: "Comandos disponíveis no game:"
 show_quests: "Missões aceitas:"
 show_quests_no_mission: "Você ainda não tem nenhuma missão"
+show_actions: "Ações disponíveis:"
+show_items: "Esses são os itens que estão por perto:"
+show_items_no_item_around: "Nenhum item por perto"
 
 # Information
 info_quest_new: "Você pode ver suas missões digitando *missões* (fora do menu)"

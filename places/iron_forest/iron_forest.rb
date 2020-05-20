@@ -23,8 +23,8 @@ class IronForest < Place
 
   def avaliable_places
     iron_village = Factory.instance.iron_village
-    iron_castle = Factory.instance.iron_castle
-    [ iron_village, iron_castle]
+    dark_swamp = Factory.instance.dark_swamp
+    [ iron_village, dark_swamp ]
   end
 
   def name

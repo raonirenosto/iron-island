@@ -6,6 +6,7 @@ class Player
   @@place
   @@started_quests
   @@finished_quests
+  @@bag
 
   def initialize
     @@hp = 1000
@@ -14,6 +15,7 @@ class Player
     @@place = nil
     @@started_quests = []
     @@finished_quests = []
+    @@bag = []
   end
 
   def level
@@ -42,11 +44,14 @@ class Player
   end
 
   def start_quest quest
+    quest.start
     @@started_quests << quest
   end
 
   def finish_quest quest
-
+    quest.finish
+    @@started_quests.delete_if { |started_quest| quest.name == started_quest.name }
+    @@finished_quests << quest
   end
 
   def accepted_quest? quest
@@ -61,5 +66,22 @@ class Player
 
   def quests
     @@started_quests
+  end
+
+  def add_to_bag item
+    @@bag << item
+  end
+
+  def remove_from_bag item
+    @@bag.delete_if { |bag_item| bag_item.name == item.name }
+  end
+
+  def in_the_bag? item
+    result = @@bag.select { |item| item.name == item.name}
+    result.size > 0
+  end
+
+  def add_coins number_of_coins
+    @@coins += number_of_coins
   end
 end

@@ -39,9 +39,7 @@ class IronIsland < Place
 
   def avaliable_places
     iron_village = Factory.instance.iron_village
-    iron_castle = Factory.instance.iron_castle
-    iron_forest = Factory.instance.iron_forest
-    [ iron_village, iron_castle, iron_forest ]
+    [ iron_village ]
   end
 
   def name

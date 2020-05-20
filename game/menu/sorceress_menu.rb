@@ -46,8 +46,17 @@ class SorceressMenu < Menu
       quest_options = []
 
       herb_quest = Factory.instance.herb_quest
+      magic_herbs = Factory.instance.magic_herbs
+
+      # Show magic herbs quest if was not taken yet
       if (not player.accepted_quest?(herb_quest))
         quest_options << herb_quest.name
+      end
+
+      if (herb_quest.started?)
+        if player.in_the_bag? magic_herbs
+          quest_options << (game_symbol.symbol_name :quest_herb_finish)
+        end
       end
 
       quest_options << (game_symbol.symbol_name :back)
@@ -71,9 +80,17 @@ class SorceressMenu < Menu
       end
 
       puts
-      case quest_symbol
-      when :quest_herb
-        show_herb_quest
+
+      if quest_symbol == :quest_herb
+        if not herb_quest.started?
+          show_herb_quest
+        end
+      end
+
+      if quest_symbol == :quest_herb_finish
+        if herb_quest.started? and (player.in_the_bag? magic_herbs)
+          deliver_magical_herbs
+        end
       end
 
     end while symbol != :back
@@ -94,8 +111,6 @@ class SorceressMenu < Menu
       out "sorceress_says", :speak_say
       out "sorceress_quest_herb_unknown_answer_2", :speak_text
     }
-
-
   end
 
   def start_herb_quest
@@ -113,6 +128,32 @@ class SorceressMenu < Menu
     puts
     out "sorceress_says", :speak_say
     out "sorceress_quest_herb_decline_quest", :speak_text
+  end
+
+  def deliver_magical_herbs
+    out "sorceress_says", :speak_say
+    out "sorceress_deliver_herbs_1", :speak_text
+    delay
+    out "sorceress_says", :speak_say
+    out "sorceress_deliver_herbs_2", :speak_text
+    delay
+    out "sorceress_deliver_remove_herbs_from_bag", :information
+    magic_herbs = Factory.instance.magic_herbs
+    player.remove_from_bag magic_herbs
+    delay
+    out "sorceress_deliver_herbs_to_aria", :information
+    delay
+    out "sorceress_says", :information
+    out "sorceress_deliver_herbs_3", :speak_text
+    delay
+    out "sorceress_give_coins", :information
+    player.add_coins 5
+    finish_magic_herbs_quest
+  end
+
+  def finish_magic_herbs_quest
+    magic_herbs_quest = Factory.instance.herb_quest
+    player.finish_quest magic_herbs_quest
   end
 
   def talk_magic

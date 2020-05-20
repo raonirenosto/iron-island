@@ -15,7 +15,9 @@ class Run
     # start_controller
     iron_island = Factory.instance.iron_island
 
+
     go_to iron_island
+    execute_loop
   end
 
   # def choose_language

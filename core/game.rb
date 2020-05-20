@@ -41,17 +41,23 @@ module Game
           :go => { :commands => text("command_go") },
           :help => { :commands => text("command_help") },
           :quests => { :commands => text("command_quests") },
-          :exit =>  {
-                      :commands => text("command_exit"),
-                      :name => text("command_exit_name")
-                    }
+          :actions => { :commands => text("command_actions") },
+          :search =>  {
+                        :commands => text("command_search") ,
+                        :name => text("command_search_name")
+                      },
+          :exit =>    {
+                        :commands => text("command_exit"),
+                        :name => text("command_exit_name")
+                      }
         }
     @@game_symbol.place_symbols =
         {
           :iron_castle => { :commands => text("command_iron_castle") },
           :iron_village => { :commands => text("command_iron_village") },
           :iron_forest => { :commands => text("command_iron_forest") },
-          :sorceress => { :commands => text("command_sorceress") }
+          :sorceress => { :commands => text("command_sorceress") },
+          :dark_swamp => { :commands => text("command_dark_swamp") }
         }
     @@game_symbol.menu_symbols =
         {
@@ -86,9 +92,21 @@ module Game
             :quest_herb =>  {
                         :commands => text("command_quest_herb"),
                         :name =>  text("command_quest_herb_name")
+                      },
+            :quest_herb_finish =>  {
+                        :commands => text("command_quest_herb_finish"),
+                        :name =>  text("command_quest_herb_name_finish")
                       }
 
           }
+      @@game_symbol.item_symbols =
+          {
+            :magic_herbs =>  {
+                        :commands => text("command_item_magic_herb"),
+                        :name =>  text("command_item_magic_herb_name")
+                      }
+          }
+
   end
 
   def game_symbol
@@ -126,6 +144,13 @@ module Game
       show_help
     when :quests
       show_quests
+    when :get
+      handle_get command
+    when :actions
+      show_actions
+    when :search
+      item_symbol = @@game_symbol.extract_item_symbol command
+      @@player.where_am_i.search item_symbol
     when :exit
       out "show_exit", :information
       exit(true)
@@ -167,7 +192,51 @@ module Game
       end
     end
 
+    # Check if can search item, if command is :search
+    if symbol == :search
+      item_symbol = @@game_symbol.extract_item_symbol typed
+
+      current_place = @@player.where_am_i
+
+      item = get_object_by_symbol(item_symbol, current_place.avaliable_searchs)
+
+      if item == nil
+        out "error_invalid_search", :error, "*"
+        return false
+      end
+    end
+
+    if symbol == :get
+      if composed_command? typed, text("command_get")
+        item_symbol = @@game_symbol.extract_item_symbol typed
+        current_place = @@player.where_am_i
+
+        item = get_object_by_symbol(item_symbol, current_place.avaliable_items)
+
+        if item == nil
+          out "error_invalid_item", :error, "*"
+          return false
+        end
+      end
+    end
+
     return true
+  end
+
+  # Return true if is a composed command Ex: go some_place
+  # Return false for single command Ex: go
+  def composed_command? typed, commands
+    results = commands.select { |command| command != typed }
+    return results.count == commands.count
+  end
+
+  def get_object_by_symbol symbol, list
+    list.each do |item|
+      if item.symbol == symbol
+        return item
+      end
+    end
+    return nil
   end
 
   def show_places
@@ -203,6 +272,48 @@ module Game
     end
     puts
   end
+
+  def show_actions
+    current_location = @@player.where_am_i
+    out "show_actions", :information
+    current_location.avaliable_actions.each do |key, value|
+      action_name = @@game_symbol.symbol_name value[:action]
+      item_name = @@game_symbol.symbol_name value[:item]
+      puts action_name.green + " " + item_name.downcase.green
+    end
+    puts
+  end
+
+  def handle_get command
+    if composed_command? command, text("command_get")
+      handle_get_item command
+    else
+      show_items
+    end
+  end
+
+  def show_items
+    current_location = @@player.where_am_i
+    if current_location.avaliable_items.size == 0
+      out "show_items_no_item_around", :information
+      return
+    end
+    out "show_items", :information
+    current_location.avaliable_items.each do |item|
+      puts item.name.green
+    end
+    puts
+  end
+
+  def handle_get_item command
+    item_symbol = @@game_symbol.extract_item_symbol command
+    current_place = @@player.where_am_i
+
+    item = current_place.avaliable_item_by_symbol item_symbol
+
+    current_place.get item
+  end
+
 
   def start_quest quest
     @@player.start_quest quest
