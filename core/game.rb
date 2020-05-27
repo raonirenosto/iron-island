@@ -42,6 +42,7 @@ module Game
           :help => { :commands => text("command_help") },
           :quests => { :commands => text("command_quests") },
           :actions => { :commands => text("command_actions") },
+          :coins => { :commands => text("command_coins") },
           :search =>  {
                         :commands => text("command_search") ,
                         :name => text("command_search_name")
@@ -151,6 +152,8 @@ module Game
     when :search
       item_symbol = @@game_symbol.extract_item_symbol command
       @@player.where_am_i.search item_symbol
+    when :coins
+      out "show_coins", :information, variable: @@player.coins
     when :exit
       out "show_exit", :information
       exit(true)
@@ -255,6 +258,10 @@ module Game
       puts key.light_blue + " = " +  text
     end
     puts
+  end
+
+  def show_coins
+
   end
 
   def go_to place

@@ -48,6 +48,10 @@ command_actions:
   - açoes
   - ação
   - acao
+command_coins:
+  - moedas
+  - moedas de ferro
+  - dinheiro
 command_search:
   - procurar
   - procura
@@ -361,6 +365,7 @@ show_quests_no_mission: "Você ainda não tem nenhuma missão"
 show_actions: "Ações disponíveis:"
 show_items: "Esses são os itens que estão por perto:"
 show_items_no_item_around: "Nenhum item por perto"
+show_coins: "Você tem *quantidade de moedas* moedas de ferro"
 
 # Information
 info_quest_new: "Você pode ver suas missões digitando *missões* (fora do menu)"

@@ -36,7 +36,7 @@ class Place
   end
 
   def avaliable_commands
-    [ :help, :exit, :quests ]
+    [ :help, :exit, :quests, :coins ]
   end
 
   def add_avaliable_item item
