@@ -103,6 +103,8 @@ class SorceressMenu < Menu
     out "sorceress_says", :speak_say
     out "sorceress_quest_herb_description_2", :speak_text
 
+    out "sorceress_quest_herb_say_yes_or_no", :information
+
     yes_no_question(method(:start_herb_quest), method(:decline_herb_quest)) {
       puts
       out "sorceress_says", :speak_say
@@ -143,7 +145,7 @@ class SorceressMenu < Menu
     delay
     out "sorceress_deliver_herbs_to_aria", :information
     delay
-    out "sorceress_says", :information
+    out "sorceress_says", :speak_say
     out "sorceress_deliver_herbs_3", :speak_text
     delay
     out "sorceress_give_coins", :information
